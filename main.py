@@ -44,3 +44,22 @@ def create_movie (
         "category": category
         })
     return movies_list
+
+@app.put ('/movies/fid)', tags=['Movies'])
+def update_movie (id: int, title: str = Body(), overview: str = Body(), year: int = Body(), rating: float = Body(), category: str = Body()):
+    for item in movies_list:
+        if item["id"] == id: 
+            item['title'] = title,
+            item['overview'] = overview,
+            item['year'] = year,
+            item['rating'] = rating,
+            item[' category'] = category,
+            return movies_list
+
+@app.delete('/movies/(id)', tags=['Movies'])
+def delete_movie(id: int):
+    for item in movies_list:
+        if item["id"] == id:
+            movies_list.remove(item)
+            return movies_list
+
